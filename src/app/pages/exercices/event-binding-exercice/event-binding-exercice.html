@@ -1,0 +1,11 @@
+<fieldset
+  class="justify-self-center fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4"
+>
+  <legend class="fieldset-legend text-base">Saisissez un nom</legend>
+  <input (keyup)="onInputChange($event)" type="text" class="input" placeholder="ex: Jean Dupont" />
+  <p class="inputText">Nom: {{ inputText || '...' }}</p>
+  <button [disabled]="isButtonDisabled" (click)="onClickAddFriend()" class="bg-success btn">
+    Ajouter un ami
+  </button>
+  <p class="friend">{{ listFriendsCreationsStatus }}</p>
+</fieldset>
