@@ -29,4 +29,11 @@ export const EXERCICES_ROUTES: Routes = [
         (m) => m.TwoWayBindingExercice,
       ),
   },
+  {
+    path: 'signals-exercice',
+    loadComponent: () => 
+      import('./signals-exercice/signals-exercice').then(
+        (m) => m.SignalsExercice,
+      ),
+  },
 ];

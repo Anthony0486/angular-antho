@@ -4,6 +4,10 @@ import { Component } from '@angular/core';
   imports: [],
   selector: 'app-text-interpolation-lesson',
   styleUrl: './text-interpolation-lesson.css',
-  templateUrl: './text-interpolation-lesson.html',
+  template: `
+    <p>Your color preference is {{ theme }}.</p>
+  `,
 })
-export class TextInterpolationLesson {}
+export class TextInterpolationLesson {
+  theme = 'dark'; 
+}

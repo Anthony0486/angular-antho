@@ -7,11 +7,11 @@ import { Component } from '@angular/core';
   templateUrl: './text-interpolation-exercice.html',
 })
 export class TextInterpolationExercice {
-  title = 'Uilisateurs';
+  title = 'Utilisateurs';
   notifications = 40;
   isAdmin = true;
   themes = ['Sombre', 'Clair'];
-  users = [
+  user = [
     { name: 'John', age: 30 },
     { name: 'Jane', age: 25 },
     { name: 'Bob', age: 40 },
