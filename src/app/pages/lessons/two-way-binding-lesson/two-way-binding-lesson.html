@@ -1,24 +1,127 @@
-<div class="container">
-  <h2>Profil Utilisateur</h2>
+<div class="max-w-5xl mx-auto p-6 space-y-10">
+  <!-- 🟦 Titre principal -->
+  <h1 class="text-4xl font-bold text-center text-primary">
+    🔄 Two-Way Data Binding avec [(ngModel)]
+  </h1>
+  <p class="text-center text-base-content/70">
+    Le <strong>Two-Way Binding</strong> associe simultanément le Property Binding <code>[ ]</code> et l'Event Binding <code>( )</code> pour synchroniser un champ de formulaire et une variable TypeScript en temps réel.
+  </p>
 
-  <!--  Liaison bidirectionnelle sur le nom -->
-  <div class="form-group">
-    <label for="name">Nom :</label>
-    <input id="name" type="text" [(ngModel)]="username" placeholder="Entrez votre nom" />
+  <!-- 🟩 Définition & Prérequis -->
+  <div class="alert alert-info shadow-lg">
+    <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+        d="M13 16h-1v-4h-1m1-4h.01M21 12A9 9 0 1 1 3 12a9 9 0 0 1 18 0z" />
+    </svg>
+    <div>
+      <p class="font-bold">Moyen mnémotechnique : « Banana in a Box » <code>[()]</code></p>
+      <p class="text-xs mt-1">
+        N'oubliez pas d'importer <code>FormsModule</code> dans le tableau <code>imports</code> de votre composant Standalone !
+      </p>
+    </div>
   </div>
 
-  <!--  Liaison bidirectionnelle sur l'email -->
-  <div class="form-group">
-    <label for="email">Email :</label>
-    <input id="email" type="email" [(ngModel)]="usermail" placeholder="Entrez votre mail" />
+  <!-- 🟧 Exemple 1 : Champ texte dynamique -->
+  <div class="card bg-base-200 shadow-xl">
+    <div class="card-body">
+      <h2 class="card-title text-secondary">✨ Exemple 1 : Champ texte dynamique</h2>
+      <p class="text-base-content/70 mb-4">
+        Saisissez du texte dans l'input. La propriété du composant est mise à jour instantanément sans écrire de méthode <code>(input)</code>.
+      </p>
+
+      <div class="form-control w-full max-w-md mx-auto space-y-3">
+        <input
+          type="text"
+          [(ngModel)]="username"
+          placeholder="Entrez votre nom"
+          class="input input-bordered w-full"
+          aria-label="Votre nom"
+        />
+
+        <p class="text-center pt-2">
+          Bonjour <span class="font-bold text-primary">{{ username || '(veuillez saisir un nom)' }}</span> !
+        </p>
+      </div>
+
+      <pre class="bg-neutral text-neutral-content p-3 rounded mt-4 overflow-x-auto">
+<code>&lt;input type="text" [(ngModel)]="username" /&gt;</code>
+</pre>
+    </div>
   </div>
 
-  <hr />
+  <!-- 🟨 Exemple 2 : Formulaire multi-éléments -->
+  <div class="card bg-base-200 shadow-xl">
+    <div class="card-body">
+      <h2 class="card-title text-accent">⚡ Exemple 2 : Select et Checkbox</h2>
+      <p class="text-base-content/70 mb-4">
+        <code>[(ngModel)]</code> s'adapte automatiquement au type du champ HTML lié.
+      </p>
 
-  <!-- Visualisation en temps réel -->
-  <div class="preview">
-    <h3>Aperçu en direct :</h3>
-    <p><strong>Nom :</strong> {{ username }}</p>
-    <p><strong>Email :</strong> {{ usermail }}</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-2">
+        <!-- Liste déroulante -->
+        <div class="form-control w-full">
+          <label class="label"><span class="label-text font-semibold">Niveau de skills :</span></label>
+          <select [(ngModel)]="studyLevel" class="select select-bordered w-full">
+            <option value="0-1">Lvl 0-1</option>
+            <option value="2-3">Lvl 2-3</option>
+            <option value="4-99">Lvl 4-99</option>
+          </select>
+        </div>
+
+        <!-- Case à cocher -->
+        <div class="form-control flex-row items-center justify-between p-4 bg-base-100 rounded-box mt-6 border border-base-300">
+          <span class="label-text font-semibold">Recherche un Job</span>
+          <input type="checkbox" [(ngModel)]="isSearchingJob" class="checkbox checkbox-primary" />
+        </div>
+      </div>
+
+      <!-- Affichage de l'état local -->
+      <div class="bg-base-100 p-4 rounded-box border border-base-300 space-y-2 text-sm mt-4">
+        <p class="font-bold">📊 Valeurs synchronisées dans le composant :</p>
+        <p>• Niveau : <span class="badge badge-accent">{{ studyLevel }}</span></p>
+        <p>• En recherche : <span class="badge {{ isSearchingJob ? 'badge-success' : 'badge-ghost' }}">{{ isSearchingJob ? 'Oui' : 'Non' }}</span></p>
+      </div>
+
+      <pre class="bg-neutral text-neutral-content p-3 rounded mt-4 overflow-x-auto">
+<code>&lt;select [(ngModel)]="studyLevel"&gt;...&lt;/select&gt;
+&lt;input type="checkbox" [(ngModel)]="isSearchingJob" /&gt;</code>
+</pre>
+    </div>
+  </div>
+
+  <!-- 🟦 Exemple 3 : Interaction depuis TypeScript -->
+  <div class="card bg-base-200 shadow-xl">
+    <div class="card-body">
+      <h2 class="card-title text-primary">🔄 Action depuis la classe TypeScript</h2>
+      <p class="text-base-content/70 mb-4">
+        La liaison étant bidirectionnelle, modifier la valeur dans le code TypeScript met à jour immédiatement le HTML.
+      </p>
+
+      <div class="flex justify-center">
+        <button class="btn btn-warning" (click)="resetForm()">
+          Réinitialiser le formulaire
+        </button>
+      </div>
+
+      <pre class="bg-neutral text-neutral-content p-3 rounded mt-4 overflow-x-auto">
+<code>// Dans le composant TypeScript :
+resetForm() &#123;
+  this.username = '';
+  this.studyLevel = 'Bac+3';
+  this.isSearchingJob = false;
+&#125;</code>
+</pre>
+    </div>
+  </div>
+
+  <!-- 🟩 Récapitulatif -->
+  <div class="alert alert-success shadow-lg">
+    <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+        d="M9 12h6m-3-3v6m9-3a9 9 0 1 1-18 0 9 9 0 0 1 18 0z" />
+    </svg>
+    <span>
+      <code>[(ngModel)]</code> simplifie le code en combinant la lecture d'une propriété <code>[ngModel]</code> et l'écoute de l'événement de changement <code>(ngModelChange)</code>.
+    </span>
   </div>
 </div>
