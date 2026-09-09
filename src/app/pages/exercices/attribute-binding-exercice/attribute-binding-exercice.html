@@ -1,0 +1,16 @@
+<div class="justify-self-center card card-side bg-base-200 shadow-sm w-150 m-4">
+  <figure>
+    <img [src]="user.img" [alt]="user.name" />
+  </figure>
+  <div class="card-body">
+    <h2 class="card-title">{{ user.name }}</h2>
+    <p>{{ user.bio }}</p>
+    <p>Status: <span class="badge {{user.status === 'Online' ? 'badge-success' : 'badge-error'}}" [class.online]="user.status === 'Online'" [class.offline]="user.status === 'Offline'">{{ user.status }}</span></p>
+    <p>GitHub: <a [href]="user.github" target="_blank">{{ user.github }}</a></p>
+    <p>Age: {{ user.age }}</p>
+    <div class="card-actions justify-end">
+      <button class="btn btn-primary">Mon profil</button>
+    </div>
+  </div>
+</div>
+

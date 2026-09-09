@@ -1,0 +1,28 @@
+
+<div class="event-binding-container">
+  
+  <!-- ⌨️ Exemple d'input : on passe $event pour récupérer la valeur saisie -->
+  <div class="control-group">
+    <label for="name-input">Saisissez votre nom :</label>
+    <input 
+      id="name-input"
+      type="text" 
+      (input)="onInputChange($event)" 
+      placeholder="Ex: Jean Dupont"
+    />
+  </div>
+
+  <!-- Affichage dynamique via Interpolation -->
+  <p class="greeting">
+    Bonjour <span class="highlight">{{ username || '...' }}</span> !
+  </p>
+
+  <hr />
+
+  <!-- 🖱️ Exemple de clic : pas besoin de passer $event si on ne l'utilise pas -->
+  <div class="control-group">
+    <button (click)="onButtonClick()">Cliquez-moi !</button>
+    <p>Nombre de clics : <span class="count">{{ clickCount }}</span></p>
+  </div>
+
+</div>

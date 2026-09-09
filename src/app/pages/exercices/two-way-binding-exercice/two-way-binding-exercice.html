@@ -1,0 +1,75 @@
+<h2 class="text-2xl font-bold text-center m-4">Profil Utilisateur</h2>
+<section class="flex flex-col items-center">
+  <div class="card card-side bg-base-300 shadow-sm w-100 mt-4">
+    <figure>
+      <img [src]="user.img" [alt]="user.name" />
+    </figure>
+    <div class="card-body">
+      <h2 class="card-title">{{ user.name }}</h2>
+      <p>
+        Status:
+        <span
+          class="badge {{ user.status === 'Online' ? 'badge-success' : 'badge-error' }}"
+          [class.online]="user.status === 'Online'"
+          [class.offline]="user.status === 'Offline'"
+          >{{ user.status }}</span
+        >
+      </p>
+      <p class="font-bold">
+        Age: <span class="font-light">{{ user.age }} ans</span>
+      </p>
+      <p class="font-bold">
+        Bio: <span class="font-light">{{ user.bio }}</span>
+      </p>
+      <p class="font-bold">
+        Github: <span class="font-light">{{ user.github }}</span>
+      </p>
+    </div>
+  </div>
+
+  <form
+    class="justify-self-center fieldset bg-base-300 border-base-300 rounded-box w-100 border mb-4 p-4"
+    id="profil-form"
+    (submit)="onSubmitReset()"
+  >
+    <legend class="fieldset-legend text-lg">Modifiez votre profil</legend>
+    <label class="font-bold text-base" for="name-input">Saisissez votre nom :</label>
+    <input
+    name="name"
+      [(ngModel)]="user.name"
+      class="bg-base-100"
+      id="name-input"
+      type="text"
+      placeholder="Ex: Jean Dupont"
+    />
+    <label class="font-bold text-base" for="age-input">Saisissez votre âge :</label>
+    <input
+    name="age"
+      [(ngModel)]="user.age"
+      class="bg-base-100"
+      id="age-input"
+      type="number"
+      placeholder="Ex: 20"
+    />
+    <label class="font-bold text-base" for="bio-input">Saisissez votre bio:</label>
+    <textarea
+    name="bio"
+      [(ngModel)]="user.bio"
+      class="bg-base-100"
+      id="bio-input"
+      rows="5"
+      placeholder="Ex: Lorem ipsum..."
+    ></textarea>
+    <label class="font-bold text-base" for="github-input">Saisissez votre github:</label>
+    <input
+    name="github"
+      [(ngModel)]="user.github"
+      class="bg-base-100"
+      id="github-input"
+      type=""
+      placeholder="Ex: https://github.com/johndoe"
+    />
+    <input type="submit" class="whitespace-nowrap mt-6 justify-self-center bg-success btn w-60" value="Réinitialiser le
+    profil"/>
+  </form>
+</section>

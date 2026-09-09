@@ -1,0 +1,27 @@
+<h2 class="text-2xl font-bold text-center m-4">{{ title }}</h2>
+<section class="flex flex-wrap justify-center">
+<div class="card card-side bg-base-200 shadow-sm w-100 m-4">
+  <div class="card-body">
+    <h2 class="card-title">{{ user[0].name }}</h2>
+    <p>{{ isAdmin ? 'Vous êtes administrateur' : "Vous n'êtes pas administrateur" }}</p>
+    <p>Vous avez {{ notifications }} notifications en attente</p>
+    <p>Votre thème par défaut est {{ themes[0] }}</p>
+  </div>
+</div>
+<div class="card card-side bg-base-200 shadow-sm w-100 m-4">
+  <div class="card-body">
+    <h2 class="card-title">{{ user[1].name }}</h2>
+    <p>{{ isAdmin ? 'Vous êtes administrateur' : "Vous n'êtes pas administrateur" }}</p>
+    <p>Vous avez {{ notifications }} notifications en attente</p>
+    <p>Votre thème par défaut est {{ themes[0] }}</p>
+  </div>
+</div>
+<div class="card card-side bg-base-200 shadow-sm w-100 m-4">
+  <div class="card-body">
+    <h2 class="card-title">{{ user[2].name }}</h2>
+    <p>{{ !isAdmin ? 'Vous êtes administrateur' : "Vous n'êtes pas administrateur" }}</p>
+    <p>Vous avez {{ notifications }} notifications en attente</p>
+    <p>Votre thème par défaut est {{ themes[1] }}</p>
+  </div>
+</div>
+</section>
