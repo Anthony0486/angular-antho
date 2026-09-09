@@ -26,6 +26,10 @@ export const routes: Routes = [
     path: 'exercices',
     loadChildren: () => import('./pages/exercices/exercices.routes').then((m) => m.EXERCICES_ROUTES),
   },
+    {
+    path: 'tp-component-manip',
+    loadChildren: () => import('./pages/tp-component-manip/tp-component-manip.routes').then((m) => m.TP_COMPONENT_MANIP_ROUTES),
+  },
   {
     path: 'evaluations',
     loadChildren: () => import('./pages/evaluations/evaluations.routes').then((m) => m.EVALUATIONS_ROUTES),
