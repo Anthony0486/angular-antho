@@ -1,28 +1,65 @@
 
-<div class="event-binding-container">
-  
-  <!-- ⌨️ Exemple d'input : on passe $event pour récupérer la valeur saisie -->
-  <div class="control-group">
-    <label for="name-input">Saisissez votre nom :</label>
-    <input 
-      id="name-input"
-      type="text" 
-      (input)="onInputChange($event)" 
-      placeholder="Ex: Jean Dupont"
-    />
-  </div>
-
-  <!-- Affichage dynamique via Interpolation -->
-  <p class="greeting">
-    Bonjour <span class="highlight">{{ username || '...' }}</span> !
+<div class="max-w-5xl mx-auto p-6 space-y-10">
+  <!-- 🟦 Titre principal -->
+  <h1 class="text-4xl font-bold text-center text-primary">
+    🎯 Event Binding dans Angular
+  </h1>
+  <p class="text-center text-base-content/70">
+    Le <strong>Event Binding</strong> permet d’écouter les événements du DOM et d’exécuter du code côté composant.
   </p>
 
-  <hr />
-
-  <!-- 🖱️ Exemple de clic : pas besoin de passer $event si on ne l'utilise pas -->
-  <div class="control-group">
-    <button (click)="onButtonClick()">Cliquez-moi !</button>
-    <p>Nombre de clics : <span class="count">{{ clickCount }}</span></p>
+  <!-- 🟩 Définition -->
+  <div class="alert alert-info shadow-lg">
+    <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+        d="M13 16h-1v-4h-1m1-4h.01M21 12A9 9 0 1 1 3 12a9 9 0 0 1 18 0z" />
+    </svg>
+    <span>Utilisez la syntaxe <code>(event)="fonction()"</code> pour lier un événement HTML à une méthode du
+      composant.</span>
   </div>
 
+  <!-- 🟧 Exemple 1 : input -->
+  <div class="card bg-base-200 shadow-xl">
+    <div class="card-body">
+      <h2 class="card-title text-secondary">✨ Exemple avec un champ texte</h2>
+      <p class="text-base-content/70 mb-4">
+        Ici, on écoute l’événement <code>input</code> pour récupérer la valeur saisie.
+      </p>
+      <input type="text" placeholder="Tapez votre nom" class="input input-bordered w-full max-w-md mx-auto"
+        (input)="onInputChange($event)" aria-label="Votre nom" />
+      <p class="mt-4 text-center">Bonjour <span class="font-bold text-primary">{{ username }}</span> !</p>
+      <pre class="bg-neutral text-neutral-content p-3 rounded mt-4 overflow-x-auto">
+<code>&lt;input (input)="onInputChange($event)" /&gt;</code>
+</pre>
+    </div>
+  </div>
+
+  <!-- 🟨 Exemple 2 : bouton -->
+  <div class="card bg-base-200 shadow-xl">
+    <div class="card-body">
+      <h2 class="card-title text-accent">⚡ Exemple avec un bouton</h2>
+      <p class="text-base-content/70 mb-4">
+        Ici, on écoute l’événement <code>click</code> pour incrémenter un compteur.
+      </p>
+      <button class="btn btn-primary mx-auto" (click)="onButtonClick()">
+        Cliquez-moi !
+      </button>
+      <p class="mt-4 text-center">
+        Nombre de clics : <span class="font-bold text-accent">{{ clickCount }}</span>
+      </p>
+      <pre class="bg-neutral text-neutral-content p-3 rounded mt-4 overflow-x-auto">
+<code>&lt;button (click)="onButtonClick()"&gt;Cliquez-moi !&lt;/button&gt;</code>
+</pre>
+    </div>
+  </div>
+
+  <!-- 🟩 Récapitulatif -->
+  <div class="alert alert-success shadow-lg">
+    <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+        d="M9 12h6m-3-3v6m9-3a9 9 0 1 1-18 0 9 9 0 0 1 18 0z" />
+    </svg>
+    <span>Vous pouvez lier n’importe quel événement DOM (click, input, mouseover, etc.) à des méthodes de votre
+      composant.</span>
+  </div>
 </div>

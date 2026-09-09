@@ -12,5 +12,9 @@ export const LESSONS_ROUTES: Routes = [
     {
         path: 'two-way-binding-lesson',
         loadComponent: () => import('./two-way-binding-lesson/two-way-binding-lesson').then((m) => m.TwoWayBindingLesson),
+    },
+    {
+        path: 'signals-lesson',
+        loadComponent: () => import('./signals-lesson/signals-lesson').then((m) => m.SignalsLesson),
     }
 ];

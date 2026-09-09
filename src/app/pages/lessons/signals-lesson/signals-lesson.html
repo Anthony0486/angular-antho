@@ -1,0 +1,183 @@
+<div class="max-w-5xl mx-auto mt-10 space-y-10">
+  <h1 class="text-4xl font-bold text-center text-primary">
+    Comprendre les Signals en Angular
+  </h1>
+
+  <!-- Historique et Contexte -->
+  <div class="alert alert-info shadow-lg">
+    <div>
+      <h4 class="font-bold text-lg">Qu'est-ce qu'un Signal ?</h4>
+      <p class="mt-2">
+        Les <strong>Signals</strong> sont une nouveauté introduite dans Angular, inspirée des concepts
+        de réactivité présents dans d'autres frameworks modernes comme <strong>Svelte</strong> ou <strong>SolidJS</strong>.
+        Leur but principal est d'offrir un modèle de gestion d'état réactif plus simple et plus performant.
+      </p>
+      <p class="mt-2">
+        Contrairement à <code>BehaviorSubject</code> ou <code>Subject</code>, les Signals éliminent la nécessité
+        de gérer manuellement les abonnements et désabonnements.
+      </p>
+      <p class="mt-2">
+        Un Signal est une unité atomique d'état réactif : il représente une valeur qui peut changer dans le temps
+        et déclenche automatiquement une mise à jour des parties de l'interface utilisateur qui en dépendent.
+      </p>
+      <ul class="list-disc list-inside mt-3 space-y-1">
+        <li>Un compteur réactif pour gérer des scores ou des incréments dynamiques.</li>
+        <li>Des formulaires interactifs avec mise à jour automatique des champs calculés.</li>
+        <li>Une application météo où les données se mettent à jour automatiquement.</li>
+      </ul>
+      <p class="italic mt-3">
+        Note : Les Signals font partie d'un effort plus large d'Angular pour moderniser et simplifier son écosystème.
+      </p>
+    </div>
+  </div>
+
+  <!-- Exemple 1 : Compteur simple -->
+  <div class="card bg-base-100 shadow-xl">
+    <div class="card-body space-y-4">
+      <h3 class="card-title text-success">Exemple 1 : Compteur Réactif</h3>
+      <p>
+        Cet exemple montre comment utiliser un Signal pour gérer un compteur réactif.
+      </p>
+      <p class="text-xl">
+        Valeur actuelle : <strong>{{ count() }}</strong>
+      </p>
+      <p class="text-xl">
+        Valeur multipliée (x{{ multiplier() }}) :
+        <strong>{{ multipliedCount() }}</strong>
+      </p>
+
+      <div class="flex flex-wrap gap-3">
+        <button class="btn btn-outline btn-primary" (click)="increment()">Incrémenter</button>
+        <button class="btn btn-outline btn-error" (click)="decrement()">Décrémenter</button>
+        <button class="btn btn-warning" (click)="reset()">Réinitialiser</button>
+      </div>
+
+      <div class="mt-4 space-y-2">
+        <label for="multiplier" class="font-semibold">Changer le multiplicateur :</label>
+        <input
+          id="multiplier"
+          type="number"
+          class="input input-bordered w-32"
+          [value]="multiplier()"
+          (input)="changeMultiplier($any($event.target).value)"
+        />
+      </div>
+      <p class="italic mt-2">
+        Avec un <code>computed</code>, la valeur multipliée se met à jour automatiquement.
+      </p>
+    </div>
+  </div>
+
+  <!-- Exemple 2 : Historique des valeurs -->
+  <div class="card bg-base-100 shadow-xl">
+    <div class="card-body space-y-4">
+      <h3 class="card-title text-primary">Exemple 2 : Historique des valeurs</h3>
+      <p>
+        Cet exemple montre comment utiliser un <code>Signal</code> pour stocker et gérer un historique des valeurs du compteur.
+      </p>
+      <div>
+        <h5 class="font-semibold text-secondary">Historique des 10 dernières valeurs :</h5>
+        <ul class="list-disc list-inside mt-2">
+          <li
+            *ngFor="let val of countHistory(); let last = last"
+            [class.text-success]="last"
+          >
+            {{ val }}
+          </li>
+        </ul>
+      </div>
+      <p class="italic">
+        Astuce : Le dernier élément de l'historique est mis en valeur pour une meilleure lisibilité.
+      </p>
+    </div>
+  </div>
+
+  <!-- Exemple 3 : Conversion d'unités -->
+  <div class="card bg-base-100 shadow-xl">
+    <div class="card-body space-y-4">
+      <h3 class="card-title text-info">Exemple 3 : Conversion d'unités</h3>
+      <p>
+        Les Signals sont également très utiles pour des calculs en temps réel.
+      </p>
+      <div class="flex flex-col sm:flex-row sm:items-center gap-3">
+        <label class="font-semibold">Kilomètres :</label>
+        <input
+          type="number"
+          class="input input-bordered w-32"
+          [value]="distanceKm()"
+          (input)="changeDistanceKm($any($event.target).value)"
+        />
+        <!-- $any(...)
+
+$any(...) dit à Angular “traite ça comme any” pour contourner le typage strict.
+Car Angular en mode strict ne sait pas que target est bien un HTMLInputElement et qu’il a une propriété .value.
+Sans $any, TypeScript râlerait :
+Property 'value' does not exist on type 'EventTarget'. -->
+      </div>
+      <p class="text-xl">Miles : <strong>{{ distanceMiles() }}</strong></p>
+      <p class="italic">
+        Cette approche est idéale pour des applications comme les calculatrices, les outils de conversion ou
+        les interfaces réactives nécessitant des calculs dépendants d'autres valeurs.
+      </p>
+    </div>
+  </div>
+</div>
+
+<h2 class="text-3xl font-bold text-secondary text-center pt-4">
+  Les 3 Piliers de la Réactivité (API Signals)
+</h2>
+
+<div class="grid md:grid-cols-3 gap-6">
+  <div class="card bg-success shadow-xl">
+    <div class="card-body p-5">
+      <h3 class="card-title">1. <code>signal(initialValue)</code></h3>
+      <p class="text-sm">
+        C'est le **créateur de l'état réactif**. Il initialise une valeur qui peut être modifiée.
+      </p>
+      <ul class="list-disc list-inside mt-2 text-sm space-y-1">
+        <li>**Lecture :** <code>count()</code></li>
+        <li>**Écriture (Remplacement) :** <code>.set(newValue)</code></li>
+        <li>**Écriture (Mise à jour) :** <code>.update(callback)</code></li>
+      </ul>
+      <pre class="bg-neutral text-neutral-content p-2 rounded-lg mt-3 text-xs">
+const count = signal(0);
+count.set(10);</pre>
+    </div>
+  </div>
+
+  <div class="card bg-primary-content shadow-xl">
+    <div class="card-body text-black p-5">
+      <h3 class="card-title text-primary">2. <code>computed(calculationFn)</code></h3>
+      <p class="text-sm">
+        Crée une valeur en **lecture seule** qui dépend automatiquement d'autres Signals. C'est un état **dérivé**.
+      </p>
+      <ul class="list-disc list-inside mt-2 text-sm space-y-1">
+        <li>**Mise à jour automatique :** Recalcule uniquement si ses dépendances changent.</li>
+        <li>**Performance :** Sa valeur est **mise en cache** (*lazy evaluation*).</li>
+        <li>**Règle :** Non modifiable par `.set()` ou `.update()`.</li>
+      </ul>
+      <!-- <pre class="bg-neutral text-neutral-content p-2 rounded-lg mt-3 text-xs">
+const isEven = computed(() => {
+  return count() % 2 === 0;
+});</pre> -->
+    </div>
+  </div>
+
+  <div class="card bg-info shadow-xl">
+    <div class="card-body p-5">
+      <h3 class="card-title">3. <code>effect(reactionFn)</code></h3>
+      <p class="text-sm">
+        Déclenche une **action latérale** (hors rendu) chaque fois qu'un Signal lu à l'intérieur est modifié.
+      </p>
+      <ul class="list-disc list-inside mt-2 text-sm space-y-1">
+        <li>**Utilisation :** Journalisation (`console.log`), synchronisation avec le `localStorage`.</li>
+        <li>**Cadre :** S'exécute **en dehors** du cycle normal de détection de changement.</li>
+        <li>**Avertissement :** Ne doit pas modifier d'autres Signals.</li>
+      </ul>
+      <!-- <pre class="bg-neutral text-neutral-content p-2 rounded-lg mt-3 text-xs">
+effect(() => {
+  console.log('Le compte est à :', count());
+});</pre> -->
+    </div>
+  </div>
+</div>
