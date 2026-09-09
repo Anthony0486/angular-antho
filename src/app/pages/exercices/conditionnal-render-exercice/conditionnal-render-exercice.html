@@ -1,0 +1,25 @@
+<fieldset
+  class="justify-self-center fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4"
+>
+  <legend class="fieldset-legend text-base">Saisissez un nom</legend>
+  <input
+    [(ngModel)]="friendName"
+    type="text"
+    class="input"
+    placeholder="ex: Jean Dupont"
+    (keydown.enter)="onClickAddFriend()"
+    required
+    pattern="[A-Za-zÀ-ÿ\s]+"
+    minlength="2"
+    maxlength="50"
+  />
+  <button (click)="onClickAddFriend()" class="bg-success btn">+ Ajouter un ami</button>
+  <p class="friendListStatus">
+    {{ listFriendsCreationsStatus() }}
+  </p>
+  <ul class="friendList">
+    @for (friend of friendList(); track friend) {
+      <li>{{ friend }}</li>
+    }
+  </ul>
+</fieldset>

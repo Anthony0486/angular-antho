@@ -1,32 +1,11 @@
 <section>
-  <label for="product-input">Ajouter produit</label>
-  <input
-    name="product"
-    id="product-input"
-    type="text"
-    placeholder="Tappez le nom du produit"
-    class="input"
-  />
-  <div class="overflow-x-auto">
-    <table class="table table-zebra">
-      <!-- head -->
-      <thead>
-        <tr>
-          <th></th>
-          <th>Produit</th>
-          <th>Quantité</th>
-          <th>Total</th>
-        </tr>
-      </thead>
-      <tbody>
-        <!-- row 1 -->
-        <tr>
-          <th>1</th>
-          <td>Pommes</td>
-          <td><button class="btn btn-square">+</button> <button class="btn btn-circle">-</button></td>
-          <td>5</td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="card bg-base-300 shadow-xl w-50 items-center">   
+  <h1 class="card-title">Pannier</h1>
+  <div class="card-body space-y-4  items-center">
+  <p class="text-base">Quantité : <span class="badge badge-info">{{ count() }}</span></p>
+  <button (click)="increment()" class="btn btn-circle btn-primary">+1</button>
+  <button [disabled]="count() === 0" (click)="decrement()" class="btn btn-circle btn-error">-1</button>
+  <button (click)="reset()" class="btn btn-success">Reset</button>
+  </div>
   </div>
 </section>

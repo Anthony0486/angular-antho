@@ -36,4 +36,11 @@ export const EXERCICES_ROUTES: Routes = [
         (m) => m.SignalsExercice,
       ),
   },
+  {
+    path: 'conditionnal-render-exercice',
+    loadComponent: () => 
+      import('./conditionnal-render-exercice/conditionnal-render-exercice').then(
+        (m) => m.ConditionnalRenderExercice,
+      ),
+  },
 ];
