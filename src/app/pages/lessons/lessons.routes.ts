@@ -16,5 +16,9 @@ export const LESSONS_ROUTES: Routes = [
     {
         path: 'signals-lesson',
         loadComponent: () => import('./signals-lesson/signals-lesson').then((m) => m.SignalsLesson),
+    },
+    {
+        path: 'parent',
+        loadComponent: () => import('./parent/parent').then((m) => m.Parent),
     }
 ];

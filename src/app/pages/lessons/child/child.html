@@ -1,0 +1,16 @@
+<div class="card card-compact bg-warning shadow-xl p-4 mt-4 mb-4">
+  <div class="card-body">
+    <h5 class="text-center text-2xl font-bold">Child Component</h5>
+    <p class="font-semibold mt-2">Message from Parent: <span class="text-primary">{{ message }}</span></p>
+    <p class="font-semibold">Counter Value: <span class="text-secondary">{{ counter }}</span></p>
+    <p class="font-semibold">Nom de l'enfant: <span class="text-secondary">{{ select }}</span></p>
+    <div class="card-actions justify-end mt-4">
+      <button class="btn btn-primary btn-sm" (click)="notifyParent()">
+        Notify Parent message
+      </button>
+      <button class="btn btn-secondary btn-sm" (click)="childNameNotifyParent()">
+        Notify Parent child name
+      </button>
+    </div>
+  </div>
+</div>

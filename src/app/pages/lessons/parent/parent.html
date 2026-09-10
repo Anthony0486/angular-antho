@@ -1,0 +1,47 @@
+<div class="container bg-sky-500 mx-auto p-8 max-w-2xl rounded-xl shadow-lg">
+  <h2 class="text-center text-3xl font-bold text-primary-focus">Parent Component</h2>
+
+  @if (childNotification) {
+  <div class="alert alert-warning mt-4">
+        <strong>Notification from Child:</strong> {{ childNotification }}
+  </div>}
+  @if (childName) {
+  <div class="alert alert-success mt-4">
+        <strong>Name from Child:</strong> {{ childName }}
+  </div>}
+  <div class="mt-4">
+    <label for="messageInput" class="block font-medium mb-2">Message to Child:</label>
+    <input [(ngModel)]="parentMessage" id="messageInput" class="input input-bordered input-primary w-full" placeholder="Enter a message" />
+  </div>
+
+  <div class="mt-4 flex items-center gap-2">
+    <label class="font-medium">Counter Value:</label>
+    <button class="btn btn-error" (click)="decreaseCounter()">-</button>
+    <span class="badge badge-lg badge-secondary">{{ counterParent }}</span>
+    <button class="btn btn-success" (click)="increaseCounter()">+</button>
+  </div>
+  <div class="m-4">
+    <label for="childSelect">Selectionnez l'enfant</label>
+    <select [(ngModel)]="toChildSelect" id="childSelect" class="bg-white text-black">
+    <option value="Toto">Toto</option>
+    <option value="Tata">Tata</option>
+    </select>
+  </div>
+
+  <!-- <app-child
+    [message]="'okokok'"
+    [counter]="1"
+    (notify)="handleNotification($event)"
+  ></app-child> -->
+  <!-- <app-child
+    [message]="'okokok'"
+    [counter]="1"
+  ></app-child> -->
+  <app-child
+    [message]="parentMessage"
+    [counter]="counterParent"
+    [select]="toChildSelect"
+    (notify)="handleNotification($event)"
+    (notify2)="handleChildName($event)"
+  ></app-child>
+</div>
