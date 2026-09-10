@@ -1,0 +1,21 @@
+<section class="justify-items-center">
+  @for (userProfil of userProfiles; track userProfil.id) {
+    <div class="card bg-base-300 w-50 shadow-sm m-4">
+      <figure>
+        <img
+          src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
+          alt="Shoes"
+        />
+      </figure>
+      <div class="card-body">
+        <h2 class="card-title">{{ userProfil.firstName }} {{ userProfil.lastName }}</h2>
+        <p>{{ userProfil.email }}</p>
+        @if (userProfil.isActive) {
+          <p>Statut: <span class="badge badge-success">En ligne</span></p>
+        } @else {
+          <p>Statut: <span class="badge badge-error">Hors ligne</span></p>
+        }
+      </div>
+    </div>
+  }
+</section>
