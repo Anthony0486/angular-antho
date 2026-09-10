@@ -20,7 +20,7 @@
       </div>
       <ul
         tabindex="-1"
-        class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+        class="menu menu-sm dropdown-content bg-base-300 rounded-box z-1 mt-3 w-64 p-2 shadow"
       >
         <li><a routerLink="/home">Accueil</a></li>
         <li>
@@ -70,9 +70,15 @@
               <li>
                 <a routerLink="/exercices/for-exercice"> Les boucles </a>
               </li>
+              <summary>TP</summary>
+              <ul>
               <li>
-                <a routerLink="/tp-component-manip/tp-component-manip"> Nesting de composants </a>
+                <a routerLink="/tp-component-manip/"> Nesting de composants </a>
               </li>
+              <li>
+                <a routerLink="/tp-component-communication/"> Communication entre composants </a>
+              </li>
+              </ul>
             </ul>
           </details>
         </li>
@@ -124,4 +130,12 @@
       </div>
     </button>
   </div>
+</div>
+<div class="breadcrumbs text-sm ml-4 bg-base-200">
+  <ul>
+    <li><a routerLink="/home">Accueil</a></li>
+    @for (crumb of breadcrumbService.breadcrumbs(); track crumb.url) {
+      <li><a [routerLink]="crumb.url">{{ crumb.label }}</a></li>
+    }
+  </ul>
 </div>
