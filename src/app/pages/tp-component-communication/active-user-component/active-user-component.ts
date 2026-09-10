@@ -6,6 +6,7 @@ import { ComponentCommunicationComponent } from '../component-communication-comp
   imports: [ComponentCommunicationComponent],
   selector: 'app-active-user-component',
   template: `
+  <h2 class="text-2xl font-bold text-center m-4">Mise à jour de profil</h2>
     <div class="card card-side bg-base-300 shadow-sm w-100 m-2 justify-self-center">
       <div class="card-body">
         <h2 class="card-title">Affichage des données</h2>
